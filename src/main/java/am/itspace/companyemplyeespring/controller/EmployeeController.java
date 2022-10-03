@@ -2,6 +2,7 @@ package am.itspace.companyemplyeespring.controller;
 
 import am.itspace.companyemplyeespring.entity.Company;
 import am.itspace.companyemplyeespring.entity.Employee;
+import am.itspace.companyemplyeespring.entity.User;
 import am.itspace.companyemplyeespring.repository.CompanyRepository;
 import am.itspace.companyemplyeespring.repository.EmployeeRepository;
 
@@ -9,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +31,8 @@ public class EmployeeController {
 
 
     @GetMapping("/employee")
-    public String employee(ModelMap modelMap) {
-        List<Employee> employees = employeeRepository.findAll();
-        modelMap.addAttribute("employees", employees);
+    public String employeePage(ModelMap modelMap) {
+        modelMap.addAttribute("employeeList", employeeRepository.findAll());
         return "employees";
     }
 

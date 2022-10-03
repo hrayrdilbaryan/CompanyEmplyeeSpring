@@ -20,9 +20,8 @@ public class CompanyController {
     private CompanyRepository companyRepository;
 
     @GetMapping("/company")
-    public String company(ModelMap modelMap){
-        List<Company> companies = companyRepository.findAll();
-        modelMap.addAttribute("company", companies);
+    public String companyPage(ModelMap modelMap){
+        modelMap.addAttribute("companyList", companyRepository.findAll());
         return "company";
     }
 
